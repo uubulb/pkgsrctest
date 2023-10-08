@@ -20,6 +20,6 @@ jobs:
           curl -O https://pkgsrc.smartos.org/packages/Darwin/bootstrap/bootstrap-macos11-trunk-x86_64-20230911.tar.gz
           sudo tar -zxpf bootstrap-macos11-trunk-x86_64-20230911.tar.gz -C /
           eval $(/usr/libexec/path_helper)
-          sudo echo "https://cdn.pyzx.eu.org/joyent-pkgsrc/packages/Darwin/11.3/arm64/All" > /opt/pkg/etc/pkgin/repositories.conf
+          sudo echo "https://cdn.pyzx.eu.org/joyent-pkgsrc/packages/Darwin/11.3/arm64/All" >> /opt/pkg/etc/pkgin/repositories.conf
           sudo pkgin -V update
           sudo pkgin -V stats

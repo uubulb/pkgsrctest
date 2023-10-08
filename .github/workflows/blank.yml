@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on: 
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: macos-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Test pkgsrc availability
+        run: |
+          curl -O https://pkgsrc.smartos.org/packages/Darwin/bootstrap/bootstrap-macos11-trunk-x86_64-20230911.tar.gz
+          sudo tar -zxpf bootstrap-macos11-trunk-x86_64-20230911.tar.gz -C /
+          eval $(/usr/libexec/path_helper)
+          sudo echo "https://cdn.pyzx.eu.org/joyent-pkgsrc/packages/Darwin/11.3/arm64/All" > /opt/pkg/etc/pkgin/repositories.conf
+          sudo pkgin -V update
+          sudo pkgin -V stats
